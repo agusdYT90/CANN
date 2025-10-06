@@ -1,4 +1,3 @@
-import "./Styles/App/Index.css";
 
 function App() {
 
