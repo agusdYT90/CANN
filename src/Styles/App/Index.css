@@ -1,0 +1,55 @@
+:root {
+    --color1: rgb(135,150,115);
+    --color2: rgb(255,255,255);
+    --color3: rgb(210,210,210);
+    --color4: rgb(200,160,100);
+    --color5: rgb(200,100,60);
+    --color6: rgb(30, 30, 30);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--letras-color2);
+    background-color: var(--color1);
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color2);
+    color: var(--fondo1);
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.5s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:hover {
+    background-color: var(--color4);
+}
+
+input {
+    width: 20%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 20px;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+input:focus {
+    border-color: #0077ff;
+    box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
+}

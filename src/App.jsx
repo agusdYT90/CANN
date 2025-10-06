@@ -1,8 +1,10 @@
+import RoutesMain from "./Routes/Routes";
+import "./Styles/App/Index.css";
 
 function App() {
 
   return (
-    <h1>Welcome CANN</h1>
+    <RoutesMain/>
   )
 }
 
