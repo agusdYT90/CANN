@@ -3,9 +3,7 @@ import "./Styles/App/Index.css";
 function App() {
 
   return (
-    <>
-      <h1>Welcome CANN</h1>
-    </>
+    <h1>Welcome CANN</h1>
   )
 }
 
