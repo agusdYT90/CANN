@@ -1,4 +1,3 @@
-import "../../Styles/Main/Main.css";
 
 function Main() {
     return (
