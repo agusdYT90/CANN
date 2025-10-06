@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "../Hooks/UseScroll.jsx";
-import RoutesPublic from "../Hooks/UseRutesPublic.jsx";
-import NotFound from "../Pages/NotFound.jsx";
+import RoutesPublic from "../Hooks/UseRutes.jsx";
 
 function RoutesMain() {
 
@@ -16,7 +15,6 @@ function RoutesMain() {
                         <Route key={Direccion} path={Direccion} element={Elemento} />
                     ))}
                 </Route>
-                <Route path="*" element={<NotFound/>} />
             </Routes>
         </Router >
     );
