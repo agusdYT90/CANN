@@ -12,7 +12,7 @@ function RoutesMain() {
             <ScrollToTop />
             <Routes>
                 <Route>
-                    {[Rutas].map(({ Direccion, Elemento }) => (
+                    {Rutas.map(({ Direccion, Elemento }) => (
                         <Route key={Direccion} path={Direccion} element={Elemento} />
                     ))}
                 </Route>
