@@ -27,14 +27,13 @@ const Register = () => {
             Email: email,
             Foto: "",
             Ubicacion: "",
-            Password: password
+            password: password
         };
 
-        console.log("R1",nuevoUsuario);
         usuarios.push(nuevoUsuario);
         localStorage.setItem("Usuarios", JSON.stringify(usuarios));
-        registrarUsuario(nuevoUsuario);
-        console.log("R2",Usuario);
+        const { password: _, ...usuarioSinPassword } = nuevoUsuario;
+        registrarUsuario({ ...usuarioSinPassword, Estado: true });
         setRedirect(true);
     };
 

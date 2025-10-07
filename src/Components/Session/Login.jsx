@@ -19,10 +19,8 @@ const Login = () => {
             return;
         }
 
-        console.log("L1",user);
-        const { Password: _, ...usuario } = user;
-        IniciarSesion({ ...usuario, Estado: true });
-        console.log("L2",Usuario);
+        const { password: _, ...usuarioSinPassword } = user;
+        IniciarSesion({ ...usuarioSinPassword, Estado: true });
         setRedirect(true);
     };
 
