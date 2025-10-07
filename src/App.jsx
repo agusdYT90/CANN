@@ -1,10 +1,13 @@
+import { AppProvider } from "./Contexts/Global";
 import RoutesMain from "./Routes/Routes";
 import "./Styles/App/Index.css";
 
 function App() {
 
   return (
-    <RoutesMain/>
+    <AppProvider>
+      <RoutesMain/>
+    </AppProvider>
   )
 }
 

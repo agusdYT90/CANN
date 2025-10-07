@@ -1,10 +1,14 @@
-import Main from "../Components/Main/Main.jsx";
+import Main from "../Components/Home/Main.jsx";
+import Header from "../Components/Home/Header.jsx";
+import Nav from "../Components/Home/Nav.jsx";
 
 function Home() {
 
     return (
         <>
+            <Header/>
             <Main />
+            <Nav/>
         </>
     );
 }

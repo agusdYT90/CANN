@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "../Hooks/UseScroll.jsx";
-import RoutesPublic from "../Hooks/UseRutes.jsx";
+import Rutes from "../Hooks/UseRutes.jsx";
 
 function RoutesMain() {
 
-    const Rutas = RoutesPublic();
+    const Rutas = Rutes();
 
     return (
         <Router>
@@ -16,7 +16,7 @@ function RoutesMain() {
                     ))}
                 </Route>
             </Routes>
-        </Router >
+        </Router>
     );
 }
 
