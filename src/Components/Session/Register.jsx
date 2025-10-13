@@ -68,8 +68,8 @@ function Registro() {
                         options={opciones}
                         value={pais}
                         onChange={setPais}
+                        closeMenuOnSelect
                         placeholder="Elegí una opción..."
-                        isClearable
                         menuPortalTarget={document.body}
                         inputProps={{ translate: 'no' }}
                         styles={{
