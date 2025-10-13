@@ -16,6 +16,8 @@ const Login = () => {
 
         if (!user) {
             alert("Credenciales incorrectas.");
+            setPassword("");
+            setEmail("");
             return;
         }
 
@@ -33,7 +35,7 @@ const Login = () => {
             <input type="email" placeholder="Email" value={email} onChange={x => setEmail(x.target.value)} required/>
             <input type="password" placeholder="Password" value={password} onChange={x => setPassword(x.target.value)} required/>
 
-            <button type="submit">Login</button>
+            <button type="submit">Log in</button>
         </form>
     );
 };
