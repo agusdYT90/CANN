@@ -1,21 +1,19 @@
 import { useUser } from "../Hooks/UseContexts";
 
 function Profile() {
-    const { Usuario, CerrarSesion } = useUser();
+    const { User, LogOut, DeleteAccount } = useUser();
 
     return (
         <div>
             <h1>Profile Page</h1>
-            <p>Usuario: {Usuario.Usuario}</p>
-            <p>Id: {Usuario.Id}</p>
-            <p>Password: {String(Usuario.Password)}</p>
-            <p>Email: {Usuario.Email}</p>
-            <p>Foto: {Usuario.Foto}</p>
-            <p>Ubicacion: {Usuario.Ubicacion}</p>
-            <p>Rol: {Usuario.Rol}</p>
-            <p>Estado: {String(Usuario.Estado)}</p>
+            <p>User: {User.User}</p>
+            <p>Email: {User.Email}</p>
+            <p>Password: {String(User.Password)}</p>
+            <p>Profile Image: {User.ProfileImg && <img src={User.ProfileImg} alt="Profile" width={100} />}</p>
+            <p>Province: {User.Province}</p>
 
-            <button onClick={CerrarSesion}>Log Out</button>
+            <button onClick={LogOut}>Log Out</button>
+            <button onClick={DeleteAccount}>Delete Account</button>
         </div>
     );
 }

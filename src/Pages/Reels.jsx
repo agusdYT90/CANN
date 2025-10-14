@@ -1,6 +1,6 @@
 
 function Reels() {
-    return <h1>Reels</h1>;
+    return <h1>Reels Page</h1>;
 }
 
 export default Reels;

@@ -1,52 +1,44 @@
 import { UserContext } from "./Contexts";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 
 export const UserProvider = ({ children }) => {
-    const resetUsuario = {
-        Estado: false,
-        Id: undefined,
-        Rol: "User",
-        Usuario: undefined,
-        Email: undefined,
-        Foto: undefined,
-        Ubicacion: undefined
-    };
+    const ResetUser = useMemo(() => ({
+        User: "",
+        Email: "",
+        ProfileImg: null,
+        Province: null,
+    }), []);
 
-    const [Usuario, setUsuario] = useState(resetUsuario);
-
-    useEffect(() => {
-        const StorageUser = localStorage.getItem("Usuario");
-        if (StorageUser) {
-            setUsuario(JSON.parse(StorageUser));
-        }
-    }, []);
+    const [User, setUser] = useState(() => {
+        const stored = localStorage.getItem("User");
+        return stored ? JSON.parse(stored) : ResetUser;
+    });
 
     useEffect(() => {
-        if (Usuario.Estado) {
-            localStorage.setItem("Usuario", JSON.stringify(Usuario));
+        if (User.Email) {
+            localStorage.setItem("User", JSON.stringify(User));
         } else {
-            localStorage.removeItem("Usuario");
+            localStorage.removeItem("User");
         }
-    }, [Usuario]);
+    }, [User]);
 
-    function registrarUsuario(nuevoUsuario) {
-        setUsuario(nuevoUsuario);
-    }
-    
-    function IniciarSesion(user) {
-        setUsuario(user);
-    }
+    const AuthenticateUser = setUser;
 
-    function CerrarSesion() {
-        setUsuario(resetUsuario);
-    }
+    const LogOut = useCallback(() => {
+        setUser(ResetUser);
+    }, [ResetUser]);
 
-    function EliminarUsuario() {
-        setUsuario(resetUsuario);
-    }
+    const DeleteAccount = useCallback(() => {
+        if (!User.Email?.trim()) return;
+        const Users = JSON.parse(localStorage.getItem("Users") || "[]");
+        const DeleteUser = Users.filter(x => x.Email !== User.Email);
+        localStorage.setItem("Users", JSON.stringify(DeleteUser));
+        LogOut();
+    }, [User.Email, LogOut]);
+
 
     return (
-        <UserContext.Provider value={{ Usuario, registrarUsuario, IniciarSesion, CerrarSesion, EliminarUsuario }}>
+        <UserContext.Provider value={{ User, AuthenticateUser, LogOut, DeleteAccount }}>
             {children}
         </UserContext.Provider>
     );

@@ -1,17 +1,17 @@
 import { Link } from "react-router-dom";
 import { UpScroll } from "../../Hooks/UseScroll";
-import RutesNav from "../../Hooks/UseRutesNav";
+import RutesNav from "../../Hooks/UseRoutesNav";
 
 function Nav() {
 
-    const Rutas = RutesNav();
+    const Paths = RutesNav();
 
     return (
-        <nav className="nav">
+        <nav>
             <ul>
-                {Rutas.map(({ Direccion, Icono }) => (
-                    <li key={Direccion}>
-                        <Link to={Direccion} onClick={UpScroll}>{Icono}</Link>
+                {Paths.map(({ Direction, Icon }) => (
+                    <li key={Direction}>
+                        <Link to={Direction} onClick={UpScroll}>{Icon}</Link>
                     </li>
                 ))}
             </ul>

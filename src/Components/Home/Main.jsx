@@ -1,7 +1,8 @@
 
 function Main() {
+    
     return (
-        <main className="main">
+        <main>
             <h1>Welcome Cann</h1>
         </main>
     );

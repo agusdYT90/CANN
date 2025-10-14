@@ -1,77 +1,115 @@
 import { useState } from "react";
 import Select from "react-select";
-import "../../Styles/App/asd.css";
+import { useUser } from "../../Hooks/UseContexts";
+import { useNavigate } from "react-router-dom";
 
-function Registro() {
-    const [nombre, setNombre] = useState('');
-    const [correo, setCorreo] = useState('');
-    const [password, setPassword] = useState('');
-    const [mostrarPassword, setMostrarPassword] = useState(false);
-    const [pais, setPais] = useState(null);
+function Register() {
+    const { AuthenticateUser } = useUser();
+    const [Name, setName] = useState('');
+    const [Email, setEmail] = useState('');
+    const [Password, setPassword] = useState('');
+    const [Province, setProvince] = useState(null);
+    /*const [ProfileImg, setProfileImg] = useState(null);*/
+    const [ViewPassword, setViewPassword] = useState(false);
+    const navigate = useNavigate();
 
-    const opciones = [
-        { value: 'argentina', label: '🇦🇷 Argentina' },
-        { value: 'mexico', label: '🇲🇽 México' },
-        { value: 'colombia', label: '🇨🇴 Colombia' },
+    const option = [
+        { value: 'Amazonas', label: 'Amazonas' },
+        { value: 'Áncash', label: 'Áncash' },
+        { value: 'Apurímac', label: 'Apurímac' },
+        { value: 'Arequipa', label: 'Arequipa' },
+        { value: 'Ayacucho', label: 'Ayacucho' },
+        { value: 'Cajamarca', label: 'Cajamarca' },
+        { value: 'Callao', label: 'Callao' },
+        { value: 'Cusco', label: 'Cusco' },
+        { value: 'Huancavelica', label: 'Huancavelica' },
+        { value: 'Huánuco', label: 'Huánuco' },
+        { value: 'Ica', label: 'Ica' },
+        { value: 'Junín', label: 'Junín' },
+        { value: 'La Libertad', label: 'La Libertad' },
+        { value: 'Lambayeque', label: 'Lambayeque' },
+        { value: 'Lima', label: 'Lima' },
+        { value: 'Loreto', label: 'Loreto' },
+        { value: 'Madre de Dios', label: 'Madre de Dios' },
+        { value: 'Moquegua', label: 'Moquegua' },
+        { value: 'Piura', label: 'Piura' },
+        { value: 'Puno', label: 'Puno' },
+        { value: 'Pasco', label: 'Pasco' },
+        { value: 'San Martín', label: 'San Martín' },
+        { value: 'Tacna', label: 'Tacna' },
+        { value: 'Tumbes', label: 'Tumbes' },
+        { value: 'Ucayali', label: 'Ucayali' }
     ];
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!pais || !pais.value) {
-            alert('Por favor seleccioná un país válido.');
+    const handleSubmit = (x) => {
+        x.preventDefault();
+
+        const Users = JSON.parse(localStorage.getItem("Users") || "[]");
+
+        if (Users.find(x => x.Email === Email)) {
+            alert("An account with that email already exists.");
             return;
         }
-        console.log({ nombre, correo, password, pais });
+
+        const NewUser = {
+            User: Name,
+            Email: Email,
+            /*ProfileImg: ProfileImg,*/
+            Province: Province.value,
+            Password: Password
+        };
+
+        Users.push(NewUser);
+        localStorage.setItem("Users", JSON.stringify(Users));
+        const { Password: _, ...UserPassword } = NewUser;
+        AuthenticateUser({ ...UserPassword });
+        navigate("/");
     };
 
     return (
-        <div className="form-container">
+        <div>
             <form onSubmit={handleSubmit}>
-                <h2>Registro</h2>
+                <h2>Register</h2>
 
                 <input
                     type="text"
-                    placeholder="Nombre"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
+                    placeholder="Name"
+                    value={Name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                 />
 
                 <input
                     type="email"
-                    placeholder="Correo electrónico"
-                    value={correo}
-                    onChange={(e) => setCorreo(e.target.value)}
+                    placeholder="Email"
+                    value={Email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                 />
 
-                <div className="password-group">
+                <div>
                     <input
-                        type={mostrarPassword ? 'text' : 'password'}
-                        placeholder="Contraseña"
-                        value={password}
+                        type={ViewPassword ? 'text' : 'password'}
+                        placeholder="Password"
+                        value={Password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                     <button
                         type="button"
-                        className="toggle-password"
-                        onClick={() => setMostrarPassword(!mostrarPassword)}
+                        onClick={() => setViewPassword(!ViewPassword)}
                     >
-                        {mostrarPassword ? '🙈' : '👁️'}
+                        {ViewPassword ? '🙈' : '👁️'}
                     </button>
                 </div>
 
-                <div style={{ maxWidth: 400, margin: '0 auto' }}>
-                    <label style={{ marginBottom: 8, display: 'block' }}>Selecciona tu país:</label>
+                <div translate='no'>
                     <Select
-                        options={opciones}
-                        value={pais}
-                        onChange={setPais}
+                        options={option}
+                        value={Province}
+                        onChange={setProvince}
+                        placeholder="Province"
                         closeMenuOnSelect
-                        placeholder="Elegí una opción..."
-                        menuPortalTarget={document.body}
-                        inputProps={{ translate: 'no' }}
                         styles={{
                             control: (base, state) => ({
                                 ...base,
@@ -92,18 +130,14 @@ function Registro() {
                                 color: '#333',
                             }),
                         }}
+                    required
                     />
-                    {pais?.label && (
-                        <p style={{ marginTop: 12 }}>
-                            País seleccionado: <strong>{pais.label}</strong>
-                        </p>
-                    )}
                 </div>
 
-                <button type="submit">Registrarse</button>
+                <button type="submit">To register</button>
             </form>
         </div>
     );
 }
 
-export default Registro;
+export default Register;

@@ -1,20 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "../Hooks/UseScroll.jsx";
-import Rutes from "../Hooks/UseRutes.jsx";
+import useRoutes from "../Hooks/UseRoutes.jsx";
 
 function RoutesMain() {
-
-    const Rutas = Rutes();
+    const Paths = useRoutes();
 
     return (
         <Router>
             <ScrollToTop />
             <Routes>
-                <Route>
-                    {Rutas.map(({ Direccion, Elemento }) => (
-                        <Route key={Direccion} path={Direccion} element={Elemento} />
-                    ))}
-                </Route>
+                {Paths.map(({ Direction, Content }) => (
+                    <Route key={Direction} path={Direction} element={Content} />
+                ))}
             </Routes>
         </Router>
     );

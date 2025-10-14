@@ -2,7 +2,7 @@
 function Header() {
 
     return (
-        <header className="header">
+        <header>
             <h2>CANN</h2>
         </header>
     );

@@ -1,39 +1,50 @@
 import { useState } from "react";
 import { useUser } from "../../Hooks/UseContexts";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const { Usuario, IniciarSesion } = useUser();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [redirect, setRedirect] = useState(false);
+    const { AuthenticateUser } = useUser();
+    const [Email, setEmail] = useState("");
+    const [Password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-    const handleLogin = (x) => {
+    const handleSubmit = (x) => {
         x.preventDefault();
 
-        const usuarios = JSON.parse(localStorage.getItem("Usuarios")) || [];
-        const user = usuarios.find(x => x.Email === email && x.password === password);
+        const Users = JSON.parse(localStorage.getItem("Users")) || [];
+        const User = Users.find(x => x.Email === Email && x.Password === Password);
 
-        if (!user) {
-            alert("Credenciales incorrectas.");
+        if (!User) {
+            alert("Incorrect credentials.");
             setPassword("");
             setEmail("");
-            return;
+            return
         }
 
-        const { password: _, ...usuarioSinPassword } = user;
-        IniciarSesion({ ...usuarioSinPassword, Estado: true });
-        setRedirect(true);
+        const { Password: _, ...UserPassword } = User;
+        AuthenticateUser({ ...UserPassword });
+        navigate("/");
     };
 
-    if (redirect || Usuario.Estado) return <Navigate to="/" />;
-
     return (
-        <form onSubmit={handleLogin}>
-            <h2>Iniciar sesión</h2>
+        <form onSubmit={handleSubmit}>
+            <h2>Login</h2>
 
-            <input type="email" placeholder="Email" value={email} onChange={x => setEmail(x.target.value)} required/>
-            <input type="password" placeholder="Password" value={password} onChange={x => setPassword(x.target.value)} required/>
+            <input
+            type="email"
+            placeholder="Email"
+            value={Email}
+            onChange={x => setEmail(x.target.value)}
+            required
+            />
+
+            <input
+            type="password"
+            placeholder="Password"
+            value={Password}
+            onChange={x => setPassword(x.target.value)}
+            required
+            />
 
             <button type="submit">Log in</button>
         </form>
