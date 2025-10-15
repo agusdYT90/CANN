@@ -1,10 +1,12 @@
 :root {
-    --color1: rgb(135,150,115);
-    --color2: rgb(255,255,255);
-    --color3: rgb(210,210,210);
-    --color4: rgb(200,160,100);
-    --color5: rgb(200,100,60);
+    --color1: rgb(135, 150, 115);
+    --color2: rgb(255, 255, 255);
+    --color3: rgb(210, 210, 210);
+    --color4: rgb(200, 160, 100);
+    --color5: rgb(200, 100, 60);
     --color6: rgb(30, 30, 30);
+    --letras-color2: rgb(255, 255, 255);
+    --fondo1: rgb(135, 150, 115);
 }
 
 body {
@@ -12,6 +14,10 @@ body {
     padding: 0;
     color: var(--letras-color2);
     background-color: var(--color1);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 ul {
@@ -67,4 +73,9 @@ input {
 
 input::placeholder {
     color: #aaa;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
 }
