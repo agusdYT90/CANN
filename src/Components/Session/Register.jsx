@@ -4,6 +4,7 @@ import { useUser } from "../../Hooks/UseContexts";
 import { useNavigate } from "react-router-dom";
 import { Provinces, Profiles } from "../../Utils/Data"
 import RegisterImage from "../../Utils/RegisterImage";
+import Profile from "../../assets/Imgs/Profile.png";
 
 function Register() {
     const { AuthenticateUser } = useUser();
@@ -13,7 +14,7 @@ function Register() {
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
     const [Province, setProvince] = useState(null);
-    const [ProfileImg, setProfileImg] = useState(" ");
+    const [ProfileImg, setProfileImg] = useState(Profile);
     const [ViewPassword, setViewPassword] = useState(false);
     const [ViewImg, setViewImg] = useState(false);
 
@@ -129,7 +130,8 @@ function Register() {
                     {ViewImg && <RegisterImage Images={Profiles} selected={setProfileImg} />}
 
                     <div>
-                        <img src={ProfileImg} alt="perfil" />
+                        <p>You profile:</p>
+                        <img src={ProfileImg} alt="perfil" style={{ width: '128px', height: '128px' }} />
                     </div>
 
                 </div>

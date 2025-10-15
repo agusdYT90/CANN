@@ -1,3 +1,9 @@
+import Dog1 from "../assets/Imgs/Profiles1.png";
+import Dog2 from "../assets/Imgs/Profiles2.png";
+import Dog3 from "../assets/Imgs/Profiles3.png";
+import Dog4 from "../assets/Imgs/Profiles4.png";
+import Cat from "../assets/Imgs/Profiles5.png";
+
 const Provinces = [
         { value: 'Amazonas', label: 'Amazonas' },
         { value: 'Áncash', label: 'Áncash' },
@@ -27,11 +33,11 @@ const Provinces = [
     ];
 
     const Profiles = [
-        { id: 1, value: 'src/assets/Imgs/Profiles1.png', text: 'Dog1' },
-        { id: 2, value: 'src/assets/Imgs/Profiles2.png', text: 'Dog2' },
-        { id: 3, value: 'src/assets/Imgs/Profiles3.png', text: 'Dog3' },
-        { id: 4, value: 'src/assets/Imgs/Profiles4.png', text: 'Dgo4' },
-        { id: 5, value: 'src/assets/Imgs/Profiles5.png', text: 'Cat' },
+        { id: 1, value: Dog1, text: 'Dog1' },
+        { id: 2, value: Dog2, text: 'Dog2' },
+        { id: 3, value: Dog3, text: 'Dog3' },
+        { id: 4, value: Dog4, text: 'Dgo4' },
+        { id: 5, value: Cat, text: 'Cat' },
     ];
 
 export { Provinces, Profiles };
