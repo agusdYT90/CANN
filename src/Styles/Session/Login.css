@@ -1,0 +1,45 @@
+.login-label {
+    position: relative;
+    margin: 20px 0;
+}
+
+.login-label input {
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 15px;
+    border: 2px solid #ccc;
+    outline: none;
+}
+
+.login-label label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #999;
+    padding: 0 5px;
+    transition: 0.2s ease all;
+    pointer-events: none;
+}
+
+.login-label input:focus+label,
+.login-label input:not(:placeholder-shown)+label {
+    left: -5px;
+    top: -18px;
+    font-size: 15px;
+    color: #333;
+}
+
+.login-viewbtn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}

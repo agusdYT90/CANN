@@ -1,0 +1,68 @@
+.register-label {
+    position: relative;
+    margin: 20px 0;
+}
+
+.register-label input {
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 15px;
+    border: 2px solid #ccc;
+    outline: none;
+}
+
+.register-label label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: #999;
+    padding: 0 5px;
+    transition: 0.2s ease all;
+    pointer-events: none;
+}
+
+.register-label input:focus+label,
+.register-label input:not(:placeholder-shown)+label {
+    left: -5px;
+    top: -18px;
+    font-size: 15px;
+    color: #333;
+}
+
+.register-viewbtn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.register-select-wrapper {
+    position: relative;
+    margin: 20px 0;
+}
+
+.register-select-wrapper.has-value .register-select-label {
+    left: -5px;
+    top: -18px;
+    font-size: 15px;
+    color: #333;
+}
+
+.register-select-label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    padding: 0 5px;
+    color: #999;
+    font-size: 15px;
+    transition: 0.2s ease all;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.register-select {
+    position: relative;
+}

@@ -4,36 +4,46 @@ import { useUser } from "../../Hooks/UseContexts";
 import { useNavigate } from "react-router-dom";
 import { Provinces, Profiles } from "../../Utils/Data"
 import RegisterImage from "../../Utils/RegisterImage";
-import Profile from "../../assets/Imgs/Profile.png";
+import "../../Styles/Session/Register.css";
 
 function Register() {
     const { AuthenticateUser } = useUser();
     const navigate = useNavigate();
 
-    const [Name, setName] = useState('');
-    const [Email, setEmail] = useState('');
-    const [Password, setPassword] = useState('');
-    const [Province, setProvince] = useState(null);
-    const [ProfileImg, setProfileImg] = useState(Profile);
-    const [ViewPassword, setViewPassword] = useState(false);
-    const [ViewImg, setViewImg] = useState(false);
+    const [step, setStep] = useState(1);
+    const [formData, setFormData] = useState({
+        Name: '',
+        Email: '',
+        Password: '',
+        Province: null,
+        ProfileImg: null,
+    });
 
-    const handleSubmit = (x) => {
-        x.preventDefault();
+    const [ViewPassword, setViewPassword] = useState(false);
+    const [ViewSelect, setViewSelect] = useState(false);
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
 
         const Users = JSON.parse(localStorage.getItem("Users") || "[]");
 
-        if (Users.find(x => x.Email === Email)) {
+        if (Users.find(x => x.Email === formData.Email)) {
             alert("An account with that email already exists.");
             return;
         }
 
+        setStep(2);
+    };
+
+    const handleImageSelect = (img) => {
+        const Users = JSON.parse(localStorage.getItem("Users") || "[]");
+
         const NewUser = {
-            User: Name,
-            Email: Email,
-            ProfileImg: ProfileImg,
-            Province: Province.value,
-            Password: Password
+            User: formData.Name,
+            Email: formData.Email,
+            ProfileImg: img,
+            Province: formData.Province.value,
+            Password: formData.Password,
         };
 
         Users.push(NewUser);
@@ -45,46 +55,46 @@ function Register() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <div>
+            {step === 1 && (
+                <form onSubmit={handleFormSubmit}>
                     <h2>Register</h2>
 
-                    <label htmlFor="NameR">Name:</label>
-                    <div translate='no'>
+                    <div className="register-label">
                         <input
                             id="NameR"
                             type="text"
-                            placeholder="Name"
-                            value={Name}
-                            onChange={(e) => setName(e.target.value)}
+                            placeholder=" "
+                            value={formData.Name}
+                            onChange={(e) => setFormData({ ...formData, Name: e.target.value })}
                             required
                         />
+                        <label htmlFor="NameR">Name</label>
                     </div>
 
-                    <label htmlFor="EmailR">Email:</label>
-                    <div translate='no'>
+                    <div className="register-label">
                         <input
                             id="EmailR"
                             type="email"
-                            placeholder="Email"
-                            value={Email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder=" "
+                            value={formData.Email}
+                            onChange={(e) => setFormData({ ...formData, Email: e.target.value })}
                             required
                         />
+                        <label htmlFor="EmailR">Email</label>
                     </div>
 
-                    <label htmlFor="PasswordR">Password:</label>
-                    <div translate='no'>
+                    <div className="register-label">
                         <input
                             id="PasswordR"
                             type={ViewPassword ? 'text' : 'password'}
-                            placeholder="Password"
-                            value={Password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder=" "
+                            value={formData.Password}
+                            onChange={(e) => setFormData({ ...formData, Password: e.target.value })}
                             required
                         />
-
+                        <label htmlFor="PasswordR">Password</label>
                         <button
+                            className="register-viewbtn"
                             type="button"
                             onClick={() => setViewPassword(!ViewPassword)}
                         >
@@ -92,52 +102,62 @@ function Register() {
                         </button>
                     </div>
 
-                    <label htmlFor="ProvinceR">Province:</label>
-                    <div translate='no'>
-                        <Select
-                            options={Provinces}
-                            value={Province}
-                            onChange={setProvince}
-                            placeholder="Province"
-                            closeMenuOnSelect
-                            inputId="ProvinceR"
-                            styles={{
-                                control: (base, state) => ({
-                                    ...base,
-                                    backgroundColor: '#f0f4f8',
-                                    borderColor: state.isFocused ? '#0077ff' : '#ccc',
-                                    boxShadow: state.isFocused ? '0 0 0 3px rgba(0, 119, 255, 0.2)' : 'none',
-                                    borderRadius: 8,
-                                    padding: 4,
-                                }),
-                                option: (base, state) => ({
-                                    ...base,
-                                    backgroundColor: state.isFocused ? '#e0eaff' : '#fff',
-                                    color: '#333',
-                                    padding: 10,
-                                }),
-                                singleValue: (base) => ({
-                                    ...base,
-                                    color: '#333',
-                                })
-                            }}
-                            required
-                        />
+                    <div className={`register-select-wrapper ${(formData.Province || ViewSelect) ? 'has-value' : ''}`}>
+                        <label htmlFor="ProvinceR" className="register-select-label">Location</label>
+                        <div translate="no" className="register-select">
+                            <Select
+                                options={Provinces}
+                                value={formData.Province}
+                                onChange={(val) => setFormData({ ...formData, Province: val })}
+                                placeholder=" "
+                                isSearchable={false}
+                                closeMenuOnSelect={true}
+                                inputId="ProvinceR"
+                                onMenuOpen={() => setViewSelect(true)}
+                                onMenuClose={() => setViewSelect(false)}
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        backgroundColor: '#f0f4f8',
+                                        boxShadow: 'none',
+                                        border: 'none',
+                                        margin: 0,
+                                        padding: 0,
+                                        position: 'relative',
+                                    }),
+                                    option: (base, state) => ({
+                                        ...base,
+                                        backgroundColor: state.isFocused ? '#e0eaff' : '#fff',
+                                        color: '#333',
+                                        padding: 10,
+                                    }),
+                                    singleValue: (base) => ({
+                                        ...base,
+                                        color: '#333',
+                                    }),
+                                    placeholder: (base) => ({
+                                        ...base,
+                                        color: 'transparent',
+                                    }),
+                                }}
+                                required
+                            />
+                        </div>
                     </div>
 
-                    <button type="button" onClick={() => setViewImg(!ViewImg)}>To continue</button>
+                    <button type="submit">To continue</button>
+                </form>
+            )}
 
-                    {ViewImg && <RegisterImage Images={Profiles} selected={setProfileImg} />}
-
-                    <div>
-                        <p>You profile:</p>
-                        <img src={ProfileImg} alt="perfil" style={{ width: '128px', height: '128px' }} />
-                    </div>
-
-                </div>
-            </form>
+            {step === 2 && (
+                <RegisterImage
+                    Images={Profiles}
+                    selected={(img) => handleImageSelect(img)}
+                />
+            )}
         </div>
     );
 }
+
 
 export default Register;

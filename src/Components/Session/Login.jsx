@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useUser } from "../../Hooks/UseContexts";
 import { useNavigate } from "react-router-dom";
+import "../../Styles/Session/Login.css";
 
 const Login = () => {
     const { AuthenticateUser } = useUser();
@@ -32,35 +33,42 @@ const Login = () => {
             <div>
                 <h2>Login</h2>
 
-                <label htmlFor="EmailL">Email:</label>
-                <div translate='no'>
+                <div className="login-label">
+
                     <input
                         id="EmailL"
                         type="email"
-                        placeholder="Email"
+                        placeholder=" "
                         value={Email}
                         onChange={x => setEmail(x.target.value)}
                         required
                     />
+
+                    <label htmlFor="EmailL">Email</label>
+
                 </div>
 
-                <label htmlFor="PasswordL">Password:</label>
-                <div translate='no'>
+                <div className="login-label">
+
                     <input
                         id="PasswordL"
                         type="password"
-                        placeholder="Password"
+                        placeholder=" "
                         value={Password}
                         onChange={x => setPassword(x.target.value)}
                         required
                     />
 
+                    <label htmlFor="PasswordL">Password</label>
+
                     <button
+                        className="login-viewbtn"
                         type="button"
                         onClick={() => setViewPassword(!ViewPassword)}
                     >
                         {ViewPassword ? '🙈' : '👁️'}
                     </button>
+
                 </div>
 
                 <button type="submit">Log in</button>
