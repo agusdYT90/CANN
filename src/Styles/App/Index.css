@@ -33,3 +33,11 @@ a {
     text-decoration: none;
     color: black;
 }
+
+a:hover {
+    color: var(--color4);
+}
+
+button {
+    cursor: pointer;
+}

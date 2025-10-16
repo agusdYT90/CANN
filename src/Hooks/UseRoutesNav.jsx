@@ -5,11 +5,11 @@ function RoutesNav() {
     const { User } = useUser();
 
     const Paths = [
-        { Direction: "/", Icon: "H" },
-        { Direction: "/map", Icon: "M" },
-        { Direction: "/publish", Icon: "PU" },
-        { Direction: "/reels", Icon: "R" },
-        { Direction: "/profile", Icon: User.ProfileImg ? User.ProfileImg : "P" },
+        { Direction: "/", Icon: "Home" },
+        /*{ Direction: "/map", Icon: "Map" },
+        { Direction: "/publish", Icon: "Publish" },
+        { Direction: "/reels", Icon: "Reels" },*/
+        { Direction: "/profile", Icon: User.ProfileImg ? <img src={User.ProfileImg} alt="Porfile" width={"75px"}/> : "Profile" },
     ];
 
     return Paths;
