@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useUser } from "../../Hooks/UseContexts";
 import { useNavigate } from "react-router-dom";
+import Eye from "../../assets/Svgs/Eye.svg";
+import EyeCrossed from "../../assets/Svgs/EyeCrossed.svg";
 import "../../Styles/Session/Login.css";
 
 const Login = () => {
@@ -29,8 +31,8 @@ const Login = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <div className="login-container" >
+            <form onSubmit={handleSubmit}>
                 <h2>Login</h2>
 
                 <div className="login-label">
@@ -52,7 +54,7 @@ const Login = () => {
 
                     <input
                         id="PasswordL"
-                        type="password"
+                        type={ViewPassword ? 'text' : 'password'}
                         placeholder=" "
                         value={Password}
                         onChange={x => setPassword(x.target.value)}
@@ -66,14 +68,23 @@ const Login = () => {
                         type="button"
                         onClick={() => setViewPassword(!ViewPassword)}
                     >
-                        {ViewPassword ? '🙈' : '👁️'}
+                        {ViewPassword ?
+                            <img src={EyeCrossed} alt="Hide" style={{
+                                width: 16,
+                                height: 16,
+                            }} />
+                            :
+                            <img src={Eye} alt="View" style={{
+                                width: 16,
+                                height: 16,
+                            }} />}
                     </button>
 
                 </div>
 
                 <button type="submit">Log in</button>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 };
 

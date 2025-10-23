@@ -4,6 +4,9 @@ import { useUser } from "../../Hooks/UseContexts";
 import { useNavigate } from "react-router-dom";
 import { Provinces, Profiles } from "../../Utils/Data"
 import RegisterImage from "../../Utils/RegisterImage";
+import CaretDown from "../../assets/Svgs/CaretDown.svg";
+import Eye from "../../assets/Svgs/Eye.svg";
+import EyeCrossed from "../../assets/Svgs/EyeCrossed.svg";
 import "../../Styles/Session/Register.css";
 
 function Register() {
@@ -54,9 +57,9 @@ function Register() {
     };
 
     return (
-        <div>
+        <div className="register-container">
             {step === 1 && (
-                <form onSubmit={handleFormSubmit}>
+                <form className="register-form" onSubmit={handleFormSubmit}>
                     <h2>Register</h2>
 
                     <div className="register-label">
@@ -98,7 +101,16 @@ function Register() {
                             type="button"
                             onClick={() => setViewPassword(!ViewPassword)}
                         >
-                            {ViewPassword ? '🙈' : '👁️'}
+                            {ViewPassword ?
+                                <img src={EyeCrossed} alt="Hide" style={{
+                                    width: 16,
+                                    height: 16,
+                                }} />
+                                :
+                                <img src={ Eye} alt="View" style={{
+                                    width: 16,
+                                    height: 16,
+                                }} />}
                         </button>
                     </div>
 
@@ -115,6 +127,21 @@ function Register() {
                                 inputId="ProvinceR"
                                 onMenuOpen={() => setViewSelect(true)}
                                 onMenuClose={() => setViewSelect(false)}
+                                components={{
+                                    DropdownIndicator: () => (
+                                        <img
+                                            src={CaretDown}
+                                            alt="DropDown"
+                                            style={{
+                                                width: 16,
+                                                height: 16,
+                                                marginRight: 8,
+                                                transform: ViewSelect ? 'rotate(180deg)' : 'rotate(0deg)',
+                                            }}
+                                        />
+                                    ),
+                                    IndicatorSeparator: () => null,
+                                }}
                                 styles={{
                                     control: (base) => ({
                                         ...base,
@@ -124,6 +151,15 @@ function Register() {
                                         margin: 0,
                                         padding: 0,
                                         position: 'relative',
+                                    }),
+                                    menuList: (base) => ({
+                                        ...base,
+                                        maxHeight: '160px',
+                                        overflowY: 'auto',
+                                        scrollbarWidth: 'none',
+                                        '&::-webkit-scrollbar': {
+                                            display: 'none',
+                                        },
                                     }),
                                     option: (base, state) => ({
                                         ...base,
@@ -145,7 +181,7 @@ function Register() {
                         </div>
                     </div>
 
-                    <button type="submit">To continue</button>
+                    <button type="submit">Continue</button>
                 </form>
             )}
 
