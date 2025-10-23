@@ -1,24 +1,28 @@
 import "../Styles/Utils/RegisterImage.css"
-import Porfile from "../assets/Imgs/Profile.png"
 
-function RegisterImage({ Images, selected }) {
+function RegisterImage({ Images, Selected, Back }) {
 
     return (
-        <div>
-            <ul>
-                {Images.map((x) => (
-                    <li key={x.id}>
-                        <div>
-                            <img
-                                src={x.value}
-                                alt={x.text}
-                                onClick={() => selected(x.value)}
-                            />
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+            <div>
+                <ul>
+                    {Images.map((x) => (
+                        <li key={x.id}>
+                            <div>
+                                <img
+                                    src={x.value}
+                                    alt={x.text}
+                                    onClick={() => Selected(x.value)}
+                                />
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div>
+                <button type="button" onClick={Back}>Back</button>
+            </div>
+        </>
     );
 }
 

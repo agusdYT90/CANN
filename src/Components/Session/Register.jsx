@@ -9,7 +9,7 @@ import Eye from "../../assets/Svgs/Eye.svg";
 import EyeCrossed from "../../assets/Svgs/EyeCrossed.svg";
 import "../../Styles/Session/Register.css";
 
-function Register() {
+function Register({ Ready }) {
     const { AuthenticateUser } = useUser();
     const navigate = useNavigate();
 
@@ -25,6 +25,12 @@ function Register() {
     const [ViewPassword, setViewPassword] = useState(false);
     const [ViewSelect, setViewSelect] = useState(false);
 
+    const GoBackToForm = () => {
+        setStep(1);
+        Ready(false);
+    };
+
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
 
@@ -35,6 +41,7 @@ function Register() {
             return;
         }
 
+        Ready(true);
         setStep(2);
     };
 
@@ -107,7 +114,7 @@ function Register() {
                                     height: 16,
                                 }} />
                                 :
-                                <img src={ Eye} alt="View" style={{
+                                <img src={Eye} alt="View" style={{
                                     width: 16,
                                     height: 16,
                                 }} />}
@@ -188,7 +195,8 @@ function Register() {
             {step === 2 && (
                 <RegisterImage
                     Images={Profiles}
-                    selected={(img) => handleImageSelect(img)}
+                    Selected={(img) => handleImageSelect(img)}
+                    Back={GoBackToForm}
                 />
             )}
         </div>

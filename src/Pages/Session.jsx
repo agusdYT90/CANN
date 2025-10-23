@@ -8,7 +8,8 @@ import "../Styles/Session/Session.css";
 function Session() {
 
     const { User } = useUser();
-    const [option, setOption] = useState("login");
+    const [Option, setOption] = useState("login");
+    const [Show, setShow] = useState(false);
 
     if (User.Email) {
         return <Navigate to="/" replace />;
@@ -16,28 +17,30 @@ function Session() {
 
     return (
         <div className="session-container">
-            <div className={`form-wrapper ${option === "login" ? "show-login" : "show-register"}`}>
-                {option === "login" && <Login/>}
-                {option === "register" && <Register/>}
+            <div className={`form-wrapper ${Option === "login" ? "show-login" : "show-register"}`}>
+                {Option === "login" && <Login />}
+                {Option === "register" && <Register Ready={setShow} />}
             </div>
 
-            <div className="session-switch">
-                {option === "login" ? (
-                    <p>
-                        Don't have an account?{" "}
-                        <button type="button" onClick={() => setOption("register")}>
-                            Sign up
-                        </button>
-                    </p>
-                ) : (
-                    <p>
-                        Already have an account?{" "}
-                        <button type="button" onClick={() => setOption("login")}>
-                            Login
-                        </button>
-                    </p>
-                )}
-            </div>
+            {!Show && (
+                <div className="session-switch">
+                    {Option === "login" ? (
+                        <p>
+                            Don't have an account?{" "}
+                            <button type="button" onClick={() => setOption("register")}>
+                                Sign up
+                            </button>
+                        </p>
+                    ) : (
+                        <p>
+                            Already have an account?{" "}
+                            <button type="button" onClick={() => setOption("login")}>
+                                Login
+                            </button>
+                        </p>
+                    )}
+                </div>
+            )}
         </div>
 
     );
