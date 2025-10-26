@@ -5,6 +5,7 @@
     --color4: rgb(200, 160, 100);
     --color5: rgb(200, 100, 60);
     --color6: rgb(30, 30, 30);
+    --color7: rgb(100, 100, 100);
 }
 
 * {
@@ -40,4 +41,10 @@ a:hover {
 
 button {
     cursor: pointer;
+}
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px rgba(200, 200, 200) inset !important;
+    -webkit-text-fill-color: #333 !important;
+    transition: background-color 5000s ease-in-out 0s;
 }

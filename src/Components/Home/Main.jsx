@@ -1,6 +1,6 @@
 
 function Main() {
-    
+
     return (
         <main>
             <h1>Welcome Cann</h1>

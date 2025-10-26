@@ -1,25 +1,23 @@
-import "../Styles/Utils/RegisterImage.css"
+import "../../Styles/Session/RegisterImage.css";
 
 function RegisterImage({ Images, Selected, Back }) {
 
     return (
         <>
-            <div>
-                <ul>
+            <div className="register-image-container">
+                <ul className="register-image-list">
                     {Images.map((x) => (
-                        <li key={x.id}>
-                            <div>
+                        <li key={x.id} className="register-image-item">
                                 <img
                                     src={x.value}
                                     alt={x.text}
                                     onClick={() => Selected(x.value)}
                                 />
-                            </div>
                         </li>
                     ))}
                 </ul>
             </div>
-            <div>
+            <div className="register-image-back">
                 <button type="button" onClick={Back}>Back</button>
             </div>
         </>

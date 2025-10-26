@@ -1,21 +1,52 @@
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: faded 4s ease forwards;
+}
+
+.register-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+}
+
+.register-title h2 {
+    margin: 0;
+    font-size: 40px;
+    color: var(--color4);
+}
+
+.register-title p {
+    margin: 5px 0 0 0;
+    font-size: 15px;
+    color: var(--color7);
+}
+
 .register-label {
     position: relative;
-    margin: 20px 0;
+    margin: 20px 0 20px 0;
 }
 
 .register-label input {
-    width: 100%;
-    padding: 10px 10px;
+    padding: 15px 40px 15px 10px;
     font-size: 15px;
-    border: 2px solid #ccc;
+    border: none;
     outline: none;
+    border-radius: 15px;
+    background-color: rgba(200, 200, 200);
 }
 
 .register-label label {
     position: absolute;
     left: 10px;
-    top: 10px;
-    color: #999;
+    top: 15px;
+    color: var(--color7);
     padding: 0 5px;
     transition: 0.2s ease all;
     pointer-events: none;
@@ -26,43 +57,62 @@
     left: -5px;
     top: -18px;
     font-size: 15px;
-    color: #333;
+    color: var(--color7);
 }
 
 .register-viewbtn {
     position: absolute;
-    right: 0px;
-    top: 13px;
-    background: none;
-    border: none;
+    right: 12px;
+    top: 14px;
     cursor: pointer;
-    font-size: 15px;
+    fill: var(--color7);
 }
 
-.register-select-wrapper {
-    position: relative;
-    margin: 20px 0;
+.floating-label {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: var(--color7);
+    transition: 0.2s ease all;
+    pointer-events: none;
+    z-index: 5;
 }
 
-.register-select-wrapper.has-value .register-select-label {
+.has-value .floating-label {
     left: -5px;
     top: -18px;
     font-size: 15px;
-    color: #333;
+    color: var(--color7);
 }
 
-.register-select-label {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    padding: 0 5px;
-    color: #999;
-    font-size: 15px;
-    transition: 0.2s ease all;
-    pointer-events: none;
-    z-index: 2;
+.register-svg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+    width: 100%;
 }
 
-.register-select {
+.register-form-btn {
     position: relative;
+    top: 20px;
+    margin-top: 20px;
+    padding: 10px 60px;
+    font-size: 18px;
+    color: var(--color2);
+    background-color: var(--color5);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.register-form-btn:hover {
+    background-color: var(--color4);
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
 }

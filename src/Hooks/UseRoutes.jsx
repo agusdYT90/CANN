@@ -13,25 +13,25 @@ function Routes() {
     const { User } = useUser();
     const Paths = [];
 
-    Paths.push({ Direction: "*", Content: <Navigate to="/"/> });
-    Paths.push({ Direction: "/session", Content: <Session/> });
+    Paths.push({ Direction: "*", Content: <Navigate to="/" /> });
+    Paths.push({ Direction: "/session", Content: <Session /> });
 
-    if (User.Email === "" ) {
-        Paths.push({ Direction: "/", Content: <Navigate to="/session"/> });
-        Paths.push({ Direction: "/map", Content: <Navigate to="/session"/> });
-        Paths.push({ Direction: "/profile", Content: <Navigate to="/session"/> });
-        Paths.push({ Direction: "/publish", Content: <Navigate to="/session"/> });
-        Paths.push({ Direction: "/reels", Content: <Navigate to="/session"/> });
-        Paths.push({ Direction: "/config", Content: <Navigate to="/session"/> });
+    if (User.Email === "") {
+        Paths.push({ Direction: "/", Content: <Navigate to="/session" /> });
+        Paths.push({ Direction: "/map", Content: <Navigate to="/session" /> });
+        Paths.push({ Direction: "/profile", Content: <Navigate to="/session" /> });
+        Paths.push({ Direction: "/publish", Content: <Navigate to="/session" /> });
+        Paths.push({ Direction: "/reels", Content: <Navigate to="/session" /> });
+        Paths.push({ Direction: "/config", Content: <Navigate to="/session" /> });
     }
 
     else {
-        Paths.push({ Direction: "/", Content: <Home/> });
-        Paths.push({ Direction: "/map", Content: <Map/> });
-        Paths.push({ Direction: "/profile", Content: <Profile/> });
-        Paths.push({ Direction: "/publish", Content: <Publish/> });
-        Paths.push({ Direction: "/reels", Content: <Reels/> });
-        Paths.push({ Direction: "/config", Content: <Config/> });
+        Paths.push({ Direction: "/", Content: <Home /> });
+        Paths.push({ Direction: "/map", Content: <Map /> });
+        Paths.push({ Direction: "/profile", Content: <Profile /> });
+        Paths.push({ Direction: "/publish", Content: <Publish /> });
+        Paths.push({ Direction: "/reels", Content: <Reels /> });
+        Paths.push({ Direction: "/config", Content: <Config /> });
     }
 
     return Paths;

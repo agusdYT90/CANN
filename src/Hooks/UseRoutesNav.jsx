@@ -9,7 +9,7 @@ function RoutesNav() {
         /*{ Direction: "/map", Icon: "Map" },
         { Direction: "/publish", Icon: "Publish" },
         { Direction: "/reels", Icon: "Reels" },*/
-        { Direction: "/profile", Icon: User.ProfileImg ? <img src={User.ProfileImg} alt="Porfile" width={"75px"}/> : "Profile" },
+        { Direction: "/profile", Icon: User.ProfileImg ? <img src={User.ProfileImg} alt="Porfile" width={"75px"} /> : "Profile" },
     ];
 
     return Paths;

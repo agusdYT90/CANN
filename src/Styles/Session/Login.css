@@ -1,21 +1,53 @@
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    animation: faded 4s ease forwards;
+}
+
+.login-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 30px;
+}
+
+.login-title h2 {
+    margin: 0;
+    font-size: 40px;
+    color: var(--color4);
+}
+
+.login-title p {
+    margin: 5px 0 0 0;
+    font-size: 15px;
+    color: var(--color7);
+}
+
 .login-label {
     position: relative;
-    margin: 20px 0;
+    margin: 20px 0 20px 0;
 }
 
 .login-label input {
-    width: 100%;
-    padding: 10px 10px;
+    padding: 15px 40px 15px 10px;
     font-size: 15px;
-    border: 2px solid #ccc;
+    border: none;
     outline: none;
+    border-radius: 15px;
+    background-color: rgba(200, 200, 200);
 }
 
 .login-label label {
     position: absolute;
     left: 10px;
-    top: 10px;
-    color: #999;
+    top: 15px;
+    color: var(--color7);
     padding: 0 5px;
     transition: 0.2s ease all;
     pointer-events: none;
@@ -26,20 +58,40 @@
     left: -5px;
     top: -18px;
     font-size: 15px;
-    color: #333;
+    color: var(--color7);
 }
 
 .login-viewbtn {
     position: absolute;
-    right: 0px;
-    top: 13px;
-    background: none;
-    border: none;
+    right: 12px;
+    top: 14px;
     cursor: pointer;
-    font-size: 15px;
+    fill: var(--color7);
+}
+
+.login-form-btn {
+    margin-top: 25px;
+    padding: 10px 60px;
+    font-size: 18px;
+    color: var(--color2);
+    background-color: var(--color5);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login-form-btn:hover {
+    background-color: var(--color4);
 }
 
 input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
     display: none;
+}
+
+@keyframes faded {
+    to {
+        opacity: 1;
+    }
 }
